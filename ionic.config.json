@@ -1,0 +1,7 @@
+{
+  "name": "tr.vl",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
