@@ -1,27 +1,43 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
 #container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+  padding: .3em;
+  padding-left: 1em;
 }
 
-#container a {
-  text-decoration: none;
+#placeholder {
+  width: 100%;
+  height: 15em;
+  background-color: white;
+  padding: 0;
+}
+
+#new-route {
+  text-transform: none;
+  width: 100%;
+  padding: 0 1em;
+
+  position: fixed;
+  left: 0;
+  bottom: 1.5em;
+  right: 0;
+}
+
+ion-icon {
+  margin-right: .3em;
+  vertical-align: middle;
+}
+
+.stats-table {
+  width: 100%;
+}
+
+.stats-table tr {
+  width: 100%;
+}
+
+.stats-table tr td {
+  padding: 1em;
+}
+.trophy {
+  background-color: rgb(130, 255, 130);
+  color: black;
 }

@@ -1,20 +1,45 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>your last route</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div id="placeholder"></div>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Ride #233</ion-card-title>
+        <ion-card-subtitle>Nea Ionia</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <table class="stats-table">
+          <tr>
+            <td class="ion-text-center"><ion-text><ion-icon name="git-commit-outline"></ion-icon>dist</ion-text></td>
+            <td class="ion-text-center"><ion-text><ion-icon name="time-outline"></ion-icon>time</ion-text></td>
+            <td class="ion-text-center"colspan="3"><ion-text><ion-icon name="speedometer-outline"></ion-icon>speed</ion-text></td>
+          </tr>
+          <tr>
+            <td class="ion-text-center"><ion-text>42km</ion-text></td>
+            <td class="ion-text-center"><ion-text>1h30m</ion-text></td>
+            <td class="ion-text-center" colspan="2"><ion-text>30 | 30 | 30 km/h</ion-text></td>
+          </tr>
+        </table>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="trophy">
+      <ion-card-content>
+        <ion-text><ion-icon name="trophy-outline"></ion-icon>personal record for top speed!</ion-text>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button class="ion-activatable ripple-parent" id="new-route">
+      <ion-icon name="analytics-outline"></ion-icon>
+       track new route
+       <ion-ripple-effect></ion-ripple-effect>
+      </ion-button>
   </div>
 </ion-content>
