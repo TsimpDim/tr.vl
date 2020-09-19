@@ -1,0 +1,39 @@
+<app-header [show]=[true] [backButtonHref]="['/']"></app-header>
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>register</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">please fill out all required details.</p>
+            <ion-list lines="none">
+                <form [formGroup]="mainFormGroup">
+                    <ion-item>
+                        <ion-label position="floating"><ion-icon name="person-outline"></ion-icon> username *</ion-label>
+                        <ion-input formControlName="username" type="text" placeholder="myusername"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating"><ion-icon name="mail-outline"></ion-icon> e-mail</ion-label>
+                        <ion-input formControlName="email" type="text" placeholder="mail@mail.com"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon> password *</ion-label>
+                        <ion-input formControlName="password" type="password"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon> confirm password *</ion-label>
+                        <ion-input formControlName="passwordConfirm" type="password"></ion-input>
+                    </ion-item>
+                    
+                    <ion-item>
+                        <ion-button class="ion-activatable ripple-parent btn-no-trnsfrm" color="primary" (click)="save()">register</ion-button>
+                    </ion-item>
+                </form>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
