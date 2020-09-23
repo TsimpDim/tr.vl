@@ -1,32 +1,33 @@
 <app-header [show]=[true] [backButtonHref]="['/']"></app-header>
 <ion-content>
     <ion-card>
-        <ion-card-header>
+        <ion-card-header color="primary">
             <ion-card-title>register</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
             <p *ngIf="submitAttempt" style="color: #ea6153;">please fill out all required details.</p>
+            <p *ngIf="mainFormGroup.hasError('passwordMismatch')" style="color: #ea6153;">passwords do not match</p>
             <ion-list lines="none">
                 <form [formGroup]="mainFormGroup">
                     <ion-item>
-                        <ion-label position="floating"><ion-icon name="person-outline"></ion-icon> username *</ion-label>
-                        <ion-input formControlName="username" type="text" placeholder="myusername"></ion-input>
+                        <ion-label position="floating"><ion-icon name="person-outline"></ion-icon></ion-label>
+                        <ion-input formControlName="username" type="text" placeholder="username"></ion-input>
                     </ion-item>
 
                     <ion-item>
-                        <ion-label position="floating"><ion-icon name="mail-outline"></ion-icon> e-mail</ion-label>
-                        <ion-input formControlName="email" type="text" placeholder="mail@mail.com"></ion-input>
+                        <ion-label position="floating"><ion-icon name="mail-outline"></ion-icon></ion-label>
+                        <ion-input formControlName="email" type="text" placeholder="e-mail (optional)"></ion-input>
                     </ion-item>
 
                     <ion-item>
-                        <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon> password *</ion-label>
-                        <ion-input formControlName="password" type="password"></ion-input>
+                        <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon></ion-label>
+                        <ion-input clearOnEdit="false" formControlName="password" type="password" placeholder="password"></ion-input>
                     </ion-item>
 
                     <ion-item>
-                        <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon> confirm password *</ion-label>
-                        <ion-input formControlName="passwordConfirm" type="password"></ion-input>
+                        <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon></ion-label>
+                        <ion-input clearOnEdit="false" formControlName="passwordConfirm" type="password"  placeholder="confirm password"></ion-input>
                     </ion-item>
                     
                     <ion-item>
