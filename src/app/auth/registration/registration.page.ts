@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomRegistrationValidators } from './registration.validators';
 
 @Component({
   selector: 'app-registration',
@@ -8,10 +7,7 @@ import { CustomRegistrationValidators } from './registration.validators';
   styleUrls: ['./registration.page.scss'],
 })
 export class RegistrationPage {
-
-
 	public mainFormGroup: FormGroup;
-
 	public submitAttempt: boolean = false;
 
     constructor(public formBuilder: FormBuilder) {

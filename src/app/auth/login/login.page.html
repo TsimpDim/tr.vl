@@ -1,9 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header [show]=[true] [backButtonHref]="['/']"></app-header>
 <ion-content>
+    <ion-card>
+        <ion-card-header color="primary">
+            <ion-card-title>login</ion-card-title>
+        </ion-card-header>
 
+        <ion-card-content>
+            <p *ngIf="submitAttempt" class="form-error">please fill out all required details.</p>
+            <ion-list lines="none">
+                <form [formGroup]="mainFormGroup">
+                    <ion-item>
+                        <ion-label position="floating"><ion-icon name="person-outline"></ion-icon></ion-label>
+                        <ion-input formControlName="username" type="text" placeholder="username"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating"><ion-icon name="lock-closed-outline"></ion-icon></ion-label>
+                        <ion-input clearOnEdit="false" formControlName="password" type="password" placeholder="password"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-button class="ion-activatable ripple-parent btn-no-trnsfrm" color="primary" (click)="save()">login</ion-button>
+                    </ion-item>
+                </form>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

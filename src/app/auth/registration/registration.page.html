@@ -6,7 +6,7 @@
         </ion-card-header>
 
         <ion-card-content>
-            <p *ngIf="submitAttempt" style="color: #ea6153;">please fill out all required details.</p>
+            <p *ngIf="submitAttempt" class="form-error">please fill out all required details.</p>
             <p *ngIf="mainFormGroup.hasError('passwordMismatch')" style="color: #ea6153;">passwords do not match</p>
             <ion-list lines="none">
                 <form [formGroup]="mainFormGroup">
