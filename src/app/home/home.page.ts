@@ -75,8 +75,7 @@ export class HomePage {
   }
 
   stopTracking() {
-    let newRoute = { finished: new Date().getTime(), path: this.trackedRoute };
-  
+    console.log(this.map.path);  
     this.isTracking = false;
     this.positionSubscription.unsubscribe();
     this.currentMapTrack.setMap(null);
