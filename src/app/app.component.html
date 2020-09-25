@@ -3,14 +3,14 @@
     <ion-menu side="start" contentId="burger-menu" type="reveal">
       <ion-header>
         <ion-toolbar color="primary">
-          <ion-title>Menu</ion-title>
+          <ion-title>menu</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-item href="routes"><ion-icon name="analytics-outline"></ion-icon> Routes</ion-item>
-          <ion-item href="auth/login"><ion-icon name="person-outline"></ion-icon>Log in</ion-item>
-          <ion-item href="auth/registration"><ion-icon name="person-add-outline"></ion-icon>Register</ion-item>
+          <a routerLink="routes"><ion-item><ion-icon name="analytics-outline"></ion-icon>routes</ion-item></a>
+          <a routerLink="auth/login"><ion-item><ion-icon name="person-outline"></ion-icon>log in</ion-item></a>
+          <a routerLink="auth/registration"><ion-item><ion-icon name="person-add-outline"></ion-icon>register</ion-item></a>
         </ion-list>
       </ion-content>
     </ion-menu>
