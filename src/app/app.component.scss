@@ -5,3 +5,12 @@ ion-icon {
     vertical-align: middle;
     color: var(--ion-color-primary);
 }
+
+ion-item a {
+    font-size: 1.1em;
+}
+
+ion-item a ion-text {
+    text-decoration: none;
+    color: white;
+}

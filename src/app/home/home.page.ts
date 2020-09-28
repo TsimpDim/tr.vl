@@ -1,8 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 declare var google;
 
@@ -42,21 +41,6 @@ export class HomePage {
     });
   }
 
-  startTracking() {
-    this.isTracking = true;
-    this.trackedRoute = [];
-
-    this.positionSubscription = this.geolocation.watchPosition()
-      .pipe(filter((p: Geoposition) => p.coords !== undefined))
-      .subscribe(data => {
-        setTimeout(() => {
-          this.trackedRoute.push({ lat: data.coords.latitude, lng: data.coords.longitude });
-          this.redrawPath(this.trackedRoute);
-        }, 0);
-      });
-
-  }
-
   redrawPath(path) {
     if (this.currentMapTrack) {
       this.currentMapTrack.setMap(null);
@@ -72,12 +56,5 @@ export class HomePage {
       });
       this.currentMapTrack.setMap(this.map);
     }
-  }
-
-  stopTracking() {
-    console.log(this.map.path);  
-    this.isTracking = false;
-    this.positionSubscription.unsubscribe();
-    this.currentMapTrack.setMap(null);
   }
 }
