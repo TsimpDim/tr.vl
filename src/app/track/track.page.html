@@ -2,6 +2,12 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
+      <div *ngIf="isTracking" style="overflow:scroll">
+        <ion-list style="max-height: 90%">
+          <ion-item *ngFor='let coords of trackedRoute'>{{coords[0]}} {{coords[1]}}</ion-item>
+        </ion-list>
+      </div>
+
       <ion-button class="ion-activatable ripple-parent" id="new-route" *ngIf="!isTracking" (click)="startTracking()">
         <ion-icon name="analytics-outline"></ion-icon>
         track new route
