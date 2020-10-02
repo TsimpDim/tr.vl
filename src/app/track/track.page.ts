@@ -1,10 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
-import { Geolocation, Geoposition } from '@ionic-native/geolocation/ngx';
-import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse, BackgroundGeolocationEvents } from '@ionic-native/background-geolocation/ngx';
 
 declare var google;
+
+const config: BackgroundGeolocationConfig = {
+  desiredAccuracy: 10,
+  stationaryRadius: 20,
+  distanceFilter: 30,
+  debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+  stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+};
 
 @Component({
   selector: 'app-track',
@@ -17,24 +24,25 @@ export class TrackPage {
   trackedRoute = [];
   positionSubscription: Subscription;
 
-  constructor(public navCtrl: NavController, private plt: Platform, private geolocation: Geolocation) { }
+  constructor(public navCtrl: NavController, private plt: Platform, private geolocation: BackgroundGeolocation) { }
 
   startTracking() {
     this.isTracking = true;
     this.trackedRoute = [];
 
-    this.positionSubscription = this.geolocation.watchPosition()
-      .pipe(filter((p: Geoposition) => p.coords !== undefined))
-      .subscribe(data => {
-        setTimeout(() => {
-          this.trackedRoute.push({ lat: data.coords.latitude, lng: data.coords.longitude });
-        }, 0);
+    this.geolocation.configure(config).then(() => {
+      this.geolocation.on(BackgroundGeolocationEvents.location)
+      .subscribe((location: BackgroundGeolocationResponse) => {
+        this.trackedRoute.push({ lat: location.latitude, lng: location.longitude });
+        this.geolocation.finish()
       });
+    });
 
+    this.geolocation.start();
   }
 
   stopTracking() {
     this.isTracking = false;
-    this.positionSubscription.unsubscribe();
+    this.geolocation.stop();
   }
 }
