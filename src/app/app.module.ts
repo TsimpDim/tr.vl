@@ -10,6 +10,7 @@ import { BackgroundGeolocation } from '@ionic-native/background-geolocation/ngx'
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { SharedModule } from './shared/shared.module';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-    BackgroundGeolocation
+    BackgroundGeolocation,
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })

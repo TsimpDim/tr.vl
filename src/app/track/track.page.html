@@ -2,9 +2,9 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <div *ngIf="isTracking" style="overflow:scroll">
-        <ion-list style="max-height: 90%">
-          <ion-item *ngFor='let coords of trackedRoute'>{{coords['lat']}} {{coords['lng']}}</ion-item>
+      <div *ngIf="isTracking">
+        <ion-list style="max-height: 70%"  style="overflow:scroll">
+          <ion-item *ngFor='let coords of trackedRoute'>{{coords['lat']}} {{coords['lng']}} {{coords['alt']}} {{coords['spd']}}</ion-item>
         </ion-list>
       </div>
 
