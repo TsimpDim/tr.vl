@@ -6,7 +6,8 @@
         </ion-card-header>
 
         <ion-card-content>
-            <p *ngIf="submitAttempt" class="form-error">please fill out all required details.</p>
+            <p *ngIf="!mainFormGroup.valid" class="form-error">please fill out all required details.</p>
+            <p *ngIf="loginError" class="form-error">username or password incorrect.</p>
             <ion-list lines="none">
                 <form [formGroup]="mainFormGroup">
                     <ion-item>
@@ -20,10 +21,19 @@
                     </ion-item>
 
                     <ion-item>
-                        <ion-button class="ion-activatable ripple-parent btn-no-trnsfrm" color="primary" (click)="save()">login</ion-button>
+                        <ion-button
+                            style="width: 100%;height: 3em;font-size:1.2em; margin-top:1em;"
+                            class="ion-activatable ripple-parent btn-no-trnsfrm" color="primary" (click)="login()">
+                            login
+                        </ion-button>
+                    </ion-item>
+
+                    <ion-item routerLink="../registration">
+                        <ion-icon name="person-add-outline"></ion-icon>
+                        <ion-text>do not have an account?</ion-text>
                     </ion-item>
                 </form>
             </ion-list>
         </ion-card-content>
-    </ion-card>
+    </ion-card> 
 </ion-content>

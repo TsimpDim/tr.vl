@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,23 +11,36 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-	public mainFormGroup: FormGroup;
-	public submitAttempt: boolean = false;
+  public mainFormGroup: FormGroup;
+  public submitAttempt: boolean = false;
+  public loginError: boolean = false;
 
-    constructor(public formBuilder: FormBuilder) {
-      this.mainFormGroup = formBuilder.group({
-        username: ['', Validators.required],
-        password: ['', Validators.required],
-      });
+  constructor(
+    public formBuilder: FormBuilder,
+    private authService: AuthService,
+    private alertService: AlertService,
+    private router: Router
+  ) {
+    this.mainFormGroup = formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
     }
 
-    save(){
+  login(){
+    this.submitAttempt = true;
 
-      this.submitAttempt = true;
-
-      if(this.mainFormGroup.valid){
-          console.log("success!")
-          console.log(this.mainFormGroup.value);
-      }
+    if(this.mainFormGroup.valid){
+        this.authService.login(this.mainFormGroup.value.username, this.mainFormGroup.value.password).subscribe(
+          data => {
+            this.alertService.presentToast("Logged in");
+            this.router.navigate(['/']);
+          }, 
+          error => {
+            this.loginError = true;
+            console.log(error);
+          }
+        )
     }
+  }
 }
