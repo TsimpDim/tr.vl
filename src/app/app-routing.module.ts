@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
+
 
 const routes: Routes = [
   {
@@ -10,7 +12,8 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'track',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'routes',
@@ -23,7 +26,8 @@ const routes: Routes = [
         path: ':routeId',
         loadChildren: () => import('./routes/routes-detail/routes-detail.module').then( m => m.RoutesDetailPageModule)
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
 
   },
   {
@@ -36,7 +40,8 @@ const routes: Routes = [
   },
   {
     path: 'track',
-    loadChildren: () => import('./track/track.module').then( m => m.TrackPageModule)
+    loadChildren: () => import('./track/track.module').then( m => m.TrackPageModule),
+    canActivate: [AuthGuard]
   },
 ];
 

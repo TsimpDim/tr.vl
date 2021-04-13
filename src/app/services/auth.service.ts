@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { EnvService } from './env.service';
 import { Plugins } from '@capacitor/core';
+import { Router } from '@angular/router';
+import { AlertService } from './alert.service';
 
 const { Storage } = Plugins;
 
@@ -16,6 +18,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private env: EnvService,
+    private router: Router,
+    private alert: AlertService
   ) { }
 
   login(username: String, password: String) {
@@ -42,21 +46,15 @@ export class AuthService {
     )
   }
 
-//   logout() {
-//     const headers = new HttpHeaders({
-//       'Authorization': this.token["token_type"]+" "+this.token["access_token"]
-//     });
+  logout() {
+    this.http.get(this.env.API_URL + '/logout');
+    Storage.remove({key: "token"}).then(() => {
+      this.alert.presentToast("logged out");
+      delete this.token;
 
-//     return this.http.get(this.env.API_URL + '/logout', { headers: headers })
-//     .pipe(
-//       tap(data => {
-//         this.storage.remove("token");
-//         this.isLoggedIn = false;
-//         delete this.token;
-//         return data;
-//       })
-//     )
-//   }
+      this.router.navigate(['/auth/login']);
+    });
+  }
 
 //   user() {
 //     const headers = new HttpHeaders({
@@ -71,10 +69,10 @@ export class AuthService {
 //     )
 //   }
 
-  isLoggedIn() {
-    this.token = Storage.get({key:'token'});
+  async isLoggedIn() {
+    this.token = await Storage.get({key:'token'});
 
-    if(this.token != null) {
+    if(this.token.value != null) {
       return true;
     }
 

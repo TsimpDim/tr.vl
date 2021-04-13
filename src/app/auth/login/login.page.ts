@@ -33,7 +33,7 @@ export class LoginPage {
     if(this.mainFormGroup.valid){
         this.authService.login(this.mainFormGroup.value.username, this.mainFormGroup.value.password).subscribe(
           data => {
-            this.alertService.presentToast("Logged in");
+            this.alertService.presentToast("logged in");
             this.router.navigate(['/']);
           }, 
           error => {
